@@ -58,7 +58,7 @@ all:
 	@$(MAKE) $(NAME) -j4
 .PHONY: all
 
-$(NAME): $(DIR_OBJS) $(OBJS) $(EMLM_OBJS)
+$(NAME): $(EMLM_OBJS) $(DIR_OBJS) $(OBJS)
 	ar -crs $(NAME) $(OBJS) $(EMLM_OBJS)
 
 $(DIR_OBJS)%.o : %.cpp
