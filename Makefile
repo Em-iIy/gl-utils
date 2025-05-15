@@ -54,7 +54,7 @@ INC = \
 	-I$(DIR_LIB) \
 	-I$(DIR_EMLM) \
 
-all:
+all: $(EMLM)
 	@$(MAKE) $(NAME) -j4
 .PHONY: all
 
