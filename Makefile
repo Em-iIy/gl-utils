@@ -58,7 +58,8 @@ all: $(EMLM)
 	@$(MAKE) $(NAME) -j4
 .PHONY: all
 
-$(NAME): $(EMLM_OBJS) $(DIR_OBJS) $(OBJS)
+$(NAME): $(EMLM) $(DIR_EMLM_OBJS) $(DIR_OBJS) $(OBJS)
+	ar x --output $(DIR_EMLM_OBJS) $(EMLM)
 	ar -crs $(NAME) $(OBJS) $(EMLM_OBJS)
 
 $(DIR_OBJS)%.o : %.cpp
@@ -66,9 +67,6 @@ $(DIR_OBJS)%.o : %.cpp
 
 $(DIR_OBJS):
 	mkdir -p $@
-
-$(EMLM_OBJS): $(EMLM) $(DIR_EMLM_OBJS)
-	ar x --output $(DIR_EMLM_OBJS) $(EMLM)
 
 $(DIR_EMLM_OBJS):
 	mkdir -p $@
