@@ -10,16 +10,16 @@ Created on: 07/09/2024
 #include "../GLAD/glad.h"
 #include "../../lib/emlm/emlm.hpp"
 
-struct Vertex {
-	mlm::vec3 pos;
-	mlm::vec3 normal;
-	mlm::vec3 color;
-	mlm::vec2 texUV;
+// struct Vertex {
+// 	mlm::vec3 pos;
+// 	mlm::vec3 normal;
+// 	mlm::vec3 color;
+// 	mlm::vec2 texUV;
 
-	bool operator<(const Vertex &vert) const {
-		return (memcmp((void *)this, (void *)&vert, sizeof(Vertex)) > 0);
-	}
-};
+// 	bool operator<(const Vertex &vert) const {
+// 		return (memcmp((void *)this, (void *)&vert, sizeof(Vertex)) > 0);
+// 	}
+// };
 
 
 class VBO {
