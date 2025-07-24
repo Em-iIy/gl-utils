@@ -4,6 +4,7 @@ NAME = libgl-utils.a
 # ----------------------------------------Files
 FILES_SRCS =	glad.cpp \
 				Window.cpp \
+				init.cpp \
 				Key.cpp \
 				Shader.cpp \
 				ComputeShader.cpp \
@@ -16,6 +17,8 @@ FILES_SRCS =	glad.cpp \
 				FrameBuffer.cpp \
 				RenderBuffer.cpp \
 				read_file.cpp \
+				rng.cpp \
+				Mesh.cpp \
 
 FILES_OBJS = $(FILES_SRCS:.cpp=.o)
 
