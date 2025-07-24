@@ -1,13 +1,63 @@
-/*
-Created by: Emily (Em_iIy) Winnink
-Created on: 16/12/2024
-*/
 #pragma once
 
-#include "../GLFW/glfw3.h"
 #include "../GLAD/glad.h"
+#include "../GLFW/glfw3.h"
+#include "../../gl-utils.hpp"
 
-void	init_glfw(void);
-GLFWwindow	*init_window(int *width, int *height, const char *title, GLFWmonitor *monitor, GLFWwindow *share, bool vsync);
+class Window
+{
+	public:
+		enum	Mode {
+			WINDOWED,
+			FULL_SCREEN_WINDOWED
+		};
 
-GLFWwindow	*init_fullscreen_window(const char *title, bool vsync);
+		enum	Flag {
+			SIZE,
+			POSITION 
+		};
+
+	private:
+		GLFWwindow	*_window = nullptr;
+		GLFWmonitor *_monitor = nullptr;
+		std::string	_title = "default";
+		mlm::ivec2	_size = mlm::ivec2(1);
+		mlm::ivec2	_pos = mlm::ivec2(0);
+		uint8_t		_update_flags = 0b00000000;
+		// bool		_vsync = true;
+
+		Mode		_mode = WINDOWED;
+
+		GLFWwindow			*create_fullscreen_windowed_window();
+		GLFWwindow			*create_windowed_window();
+
+
+	public:
+
+		void				set_update_flags(Flag flag);
+		void				unset_update_flags(Flag flag);
+		bool				get_update_flag(Flag flag) const;
+		Window();
+		~Window();
+
+		void				create_window(const std::string &title, const mlm::ivec2 &size, Mode mode);
+
+		static void			resize_callback(GLFWwindow* window, int x, int y);
+
+		void				update();
+
+
+		/*    Setters    */
+		void				set_size(const mlm::ivec2 &size);
+		void				set_pos(const mlm::ivec2 &pos);
+
+		/*    Getters    */
+		GLFWwindow			*get_window() const;
+		const std::string	&get_title() const;
+		const mlm::ivec2	&get_size() const;
+		const mlm::ivec2	&get_pos() const;
+		Window::Mode		get_mode() const;
+
+		void				print(void) const;
+
+};
