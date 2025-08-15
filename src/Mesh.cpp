@@ -7,6 +7,8 @@ Created on: 21/07/2025
 
 #include "Mesh.hpp"
 
+Mesh::Mesh() {}
+
 Mesh::Mesh(const std::vector<Vertex> &vertices, const std::vector<uint32_t> &indices): _vertices(vertices), _indices(indices)
 {
 	setup_mesh();

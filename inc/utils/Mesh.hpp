@@ -24,6 +24,7 @@ class Mesh {
 	public:
 		std::vector<Vertex>		_vertices;
 		std::vector<uint32_t>	_indices;
+		Mesh();
 		Mesh(const std::vector<Vertex> &vertices, const std::vector<uint32_t> &indices);
 
 		void	draw(Shader &shader);
