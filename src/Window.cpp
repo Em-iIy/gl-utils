@@ -52,6 +52,14 @@ GLFWwindow			*Window::create_windowed_window()
 	return (window);
 }
 
+void				Window::update_delta_time()
+{
+	float current_frame = static_cast<float>(glfwGetTime());
+	_delta_time = current_frame - _last_frame;
+	_last_frame = current_frame;
+}
+
+
 void				Window::create_window(const std::string &title, const mlm::ivec2 &size, Mode mode)
 {
 	_title = title;
@@ -84,6 +92,7 @@ void				Window::create_window(const std::string &title, const mlm::ivec2 &size, 
 
 void				Window::update()
 {
+	update_delta_time();
 	if (get_update_flag(SIZE))
 	{
 		std::cout << "update size" << std::endl;
@@ -136,6 +145,11 @@ const mlm::ivec2	&Window::get_pos() const
 Window::Mode		Window::get_mode() const
 {
 	return (_mode);
+}
+
+float				Window::get_delta_time() const
+{
+	return (_delta_time);
 }
 
 void				Window::print(void) const
