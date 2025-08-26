@@ -25,7 +25,7 @@ Created on: 07/09/2024
 class VBO {
 	public:
 		// Reference ID of the Vertex Buffer Object
-		GLuint id;
+		GLuint id = {};
 
 		VBO(void);
 		// Constructor that generates a Vertex Buffer Object and links it to vertices

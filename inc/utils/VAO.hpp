@@ -11,7 +11,7 @@ Created on: 07/09/2024
 class VAO {
 	public:
 		// id reference for the Vertex Array Object
-		GLuint id;
+		GLuint id = {};
 		// Constructor that generates a VAO id
 		VAO();
 		VAO(GLsizei size);

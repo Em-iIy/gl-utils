@@ -13,7 +13,7 @@ void	delete_texture(uint texture);
 
 class Tex2d	{
 	private:
-		GLuint	id;
+		GLuint	id = {};
 
 		GLint	wrap_s;
 		GLint	wrap_t;

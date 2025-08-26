@@ -12,7 +12,7 @@ Created on: 07/09/2024
 class EBO {
 	public:
 		// ID reference of Elements Buffer Object
-		GLuint id;
+		GLuint id = {};
 
 		EBO(void);
 		// Constructor that generates a Elements Buffer Object and links it to indices
