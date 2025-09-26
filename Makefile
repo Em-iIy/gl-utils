@@ -33,6 +33,7 @@ vpath %.cpp \
 	$(DIR_SRCS) \
 	$(DIR_LIB) \
 	$(DIR_LIB)bmp \
+	$(DIR_LIB)glad \
 
 # ----------------------------------------Sources
 SRCS = $(FILES_SRCS:%=$(DIR_SRCS)%)
