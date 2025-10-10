@@ -20,8 +20,6 @@ void	FrameBuffer::create(int width, int height)
 	_width = width;
 	_height = height;
 	glGenFramebuffers(1, &_id);
-	glBindFramebuffer(GL_FRAMEBUFFER, _id);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void	FrameBuffer::destroy()
@@ -85,9 +83,7 @@ void	FrameBuffer::attachColorTexture(int index, GLenum internalFormat, GLenum fo
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, clamp ? GL_CLAMP_TO_EDGE : GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, clamp ? GL_CLAMP_TO_EDGE : GL_REPEAT);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, _id);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, _colorTextures[index], 0);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void	FrameBuffer::ensureDepthTexture(GLenum internalFormat)
@@ -114,9 +110,7 @@ void	FrameBuffer::ensureDepthTexture(GLenum internalFormat)
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, _id);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, _depthTexture, 0);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void	FrameBuffer::ensureDepthRbo(GLenum internalFormat)
@@ -136,12 +130,10 @@ void	FrameBuffer::ensureDepthRbo(GLenum internalFormat)
 	glRenderbufferStorage(GL_RENDERBUFFER, internalFormat, _width, _height);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, _id);
 	if (internalFormat == GL_DEPTH24_STENCIL8)
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _depthRbo);
 	else
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRbo);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 bool	FrameBuffer::checkStatus() const
@@ -159,9 +151,7 @@ bool	FrameBuffer::checkStatus() const
 
 void	FrameBuffer::setDrawBuffers(const std::vector<GLenum> &drawBuffers)
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, _id);
 	glDrawBuffers(static_cast<GLsizei>(drawBuffers.size()), drawBuffers.empty() ? nullptr : drawBuffers.data());
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void	FrameBuffer::blitDepthFrom(GLuint srcFbo, int srcWidth, int srcHeight)
@@ -179,9 +169,8 @@ void	FrameBuffer::blitDepthFrom(GLuint srcFbo, int srcWidth, int srcHeight)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void	FrameBuffer::clear(bool clearColor, bool clearDepth, const mlm::vec4 clearColorRGBA) const
+void	FrameBuffer::clear(bool clearColor, bool clearDepth, const mlm::vec4 clearColorRGBA)
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, _id);
 	GLbitfield mask = 0;
 	if (clearColor)
 	{
@@ -192,7 +181,6 @@ void	FrameBuffer::clear(bool clearColor, bool clearDepth, const mlm::vec4 clearC
 		mask |= GL_DEPTH_BUFFER_BIT;
 	if (mask)
 		glClear(mask);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void	FrameBuffer::resize(int newWidth, int newHeight)
