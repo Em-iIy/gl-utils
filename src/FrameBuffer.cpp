@@ -86,7 +86,7 @@ void	FrameBuffer::attachColorTexture(int index, GLenum internalFormat, GLenum fo
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, _colorTextures[index], 0);
 }
 
-void	FrameBuffer::ensureDepthTexture(GLenum internalFormat)
+void	FrameBuffer::ensureDepthTexture(GLenum internalFormat, GLenum type)
 {
 	if (_id == 0)
 		throw std::runtime_error("Framebuffer hasn't been created");
@@ -96,11 +96,11 @@ void	FrameBuffer::ensureDepthTexture(GLenum internalFormat)
 		glDeleteRenderbuffers(1, &_depthRbo);
 		_depthRbo = 0;
 	}
-	if (_depthTexture)
+	if (_depthTexture == 0)
 		glGenTextures(1, &_depthTexture);
 	
 	glBindTexture(GL_TEXTURE_2D, _depthTexture);
-	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, _width, _height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, nullptr);
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, _width, _height, 0, GL_DEPTH_COMPONENT, type, nullptr);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
