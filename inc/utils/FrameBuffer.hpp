@@ -32,7 +32,8 @@ class FrameBuffer {
 		);
 
 		void				ensureDepthTexture(
-			GLenum internalFormat = GL_DEPTH_COMPONENT24
+			GLenum internalFormat = GL_DEPTH_COMPONENT24,
+			GLenum type = GL_UNSIGNED_INT
 		);
 
 		void				ensureDepthRbo(
