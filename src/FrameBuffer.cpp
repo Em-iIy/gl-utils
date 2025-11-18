@@ -86,7 +86,7 @@ void	FrameBuffer::attachColorTexture(int index, GLenum internalFormat, GLenum fo
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + index, GL_TEXTURE_2D, _colorTextures[index], 0);
 }
 
-void	FrameBuffer::ensureDepthTexture(GLenum internalFormat, GLenum type)
+void	FrameBuffer::ensureDepthTexture(GLenum internalFormat, GLenum type, bool nearest, GLenum clamp, mlm::vec4 borderColor)
 {
 	if (_id == 0)
 		throw std::runtime_error("Framebuffer hasn't been created");
@@ -102,11 +102,14 @@ void	FrameBuffer::ensureDepthTexture(GLenum internalFormat, GLenum type)
 	glBindTexture(GL_TEXTURE_2D, _depthTexture);
 	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, _width, _height, 0, GL_DEPTH_COMPONENT, type, nullptr);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest ? GL_NEAREST : GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest ? GL_NEAREST : GL_LINEAR);
 	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, clamp);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, clamp);
+
+	if (clamp == GL_CLAMP_TO_BORDER)
+		glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, reinterpret_cast<GLfloat *>(&(borderColor.x)));
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 

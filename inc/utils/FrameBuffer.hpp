@@ -33,7 +33,10 @@ class FrameBuffer {
 
 		void				ensureDepthTexture(
 			GLenum internalFormat = GL_DEPTH_COMPONENT24,
-			GLenum type = GL_UNSIGNED_INT
+			GLenum type = GL_UNSIGNED_INT,
+			bool nearest = true,
+			GLenum clamp = GL_CLAMP_TO_EDGE,
+			mlm::vec4 borderColor = mlm::vec4(1.0f)
 		);
 
 		void				ensureDepthRbo(
