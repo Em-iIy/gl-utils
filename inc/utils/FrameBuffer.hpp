@@ -52,6 +52,7 @@ class FrameBuffer {
 		void				blitDepthFrom(GLuint srcFbo, int srcWidth, int srcHeight);
 
 		static void			clear(bool clearColor, bool clearDepth, const mlm::vec4 clearColorRGBA);
+		static void			clearBufferfv(GLenum buffer, GLint index, const mlm::vec4 clearColorRGBA);
 
 		void				resize(int newWidth, int newHeight);
 

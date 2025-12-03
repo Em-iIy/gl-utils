@@ -186,6 +186,12 @@ void	FrameBuffer::clear(bool clearColor, bool clearDepth, const mlm::vec4 clearC
 		glClear(mask);
 }
 
+void	FrameBuffer::clearBufferfv(GLenum buffer, GLint index, const mlm::vec4 clearColorRGBA)
+{
+	glClearBufferfv(buffer, index, reinterpret_cast<const GLfloat *>(&(clearColorRGBA.x)));
+}
+
+
 void	FrameBuffer::resize(int newWidth, int newHeight)
 {
 	if (newWidth == _width && newHeight == _height)
