@@ -46,7 +46,7 @@ uint	load_texture(const char *img)
 	glTexImage2D(GL_TEXTURE_2D, 0, format, bmp.width, bmp.height, 0, format, GL_UNSIGNED_BYTE, bmp.data);
 
 	// Generate mipmap for the texture
-	glGenerateMipmap(texture);
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	free_bmp(bmp);
 	return (texture);
@@ -106,7 +106,7 @@ void	Tex2d::load(const bmp_t &bmp)
 	glTexImage2D(GL_TEXTURE_2D, 0, format, bmp.width, bmp.height, 0, format, GL_UNSIGNED_BYTE, bmp.data);
 
 	// Generate mipmap for the texture
-	glGenerateMipmap(this->id);
+	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
 void	Tex2d::load_render_texture(GLsizei width, GLsizei height, GLenum format, GLenum type)
