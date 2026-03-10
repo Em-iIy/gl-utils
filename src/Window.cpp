@@ -43,6 +43,7 @@ GLFWwindow			*Window::create_fullscreen_windowed_window()
 	glfwWindowHint(GLFW_GREEN_BITS, vidmode->greenBits);
 	glfwWindowHint(GLFW_REFRESH_RATE, vidmode->refreshRate);
 	GLFWwindow	*window = glfwCreateWindow(vidmode->width, vidmode->height, _title.c_str(), _monitor, nullptr);
+	_size = mlm::ivec2(vidmode->width, vidmode->height);
 	return (window);
 }
 
