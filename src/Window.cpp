@@ -50,6 +50,7 @@ GLFWwindow			*Window::create_fullscreen_windowed_window()
 GLFWwindow			*Window::create_windowed_window()
 {
 	GLFWwindow	*window = glfwCreateWindow(_size.x, _size.y, _title.c_str(), nullptr, nullptr);
+	glfwGetWindowSize(window, &_size.x, &_size.y);
 	return (window);
 }
 
