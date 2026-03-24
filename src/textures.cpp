@@ -63,7 +63,6 @@ Tex2d::Tex2d(): wrap_s(GL_REPEAT), wrap_t(GL_REPEAT), filter_min(GL_NEAREST), fi
 Tex2d::Tex2d(GLenum wrap, GLenum filter): wrap_s(wrap), wrap_t(wrap), filter_min(filter), filter_mag(filter)
 {}
 
-
 Tex2d::~Tex2d() {}
 
 void	Tex2d::load(const char *img)
@@ -95,7 +94,7 @@ void	Tex2d::load(const bmp_t &bmp)
 
 	glGenTextures(1, &this->id);
 	this->bind();
-	
+
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, this->wrap_s);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, this->wrap_t);
 

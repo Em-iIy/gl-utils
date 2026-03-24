@@ -28,7 +28,7 @@ class Mesh {
 		Mesh(const std::vector<Vertex> &vertices, const std::vector<uint32_t> &indices);
 
 		void	draw(Shader &shader);
-	
+
 	private:
 		VAO		_vao;
 		VBO		_vbo;

@@ -62,10 +62,10 @@ void	FrameBuffer::attachColorTexture(int index, GLenum internalFormat, GLenum fo
 {
 	if (_id == 0)
 		throw std::runtime_error("Framebuffer hasn't been created");
-	
+
 	if (static_cast<int>(_colorTextures.size()) <= index)
 		_colorTextures.resize(index + 1, 0);
-	
+
 	if (_colorTextures[index] == 0)
 		glGenTextures(1, &_colorTextures[index]);
 	glBindTexture(GL_TEXTURE_2D, _colorTextures[index]);
@@ -90,7 +90,7 @@ void	FrameBuffer::ensureDepthTexture(GLenum internalFormat, GLenum type, bool ne
 {
 	if (_id == 0)
 		throw std::runtime_error("Framebuffer hasn't been created");
-	
+
 	if (_depthRbo != 0)
 	{
 		glDeleteRenderbuffers(1, &_depthRbo);
@@ -98,13 +98,13 @@ void	FrameBuffer::ensureDepthTexture(GLenum internalFormat, GLenum type, bool ne
 	}
 	if (_depthTexture == 0)
 		glGenTextures(1, &_depthTexture);
-	
+
 	glBindTexture(GL_TEXTURE_2D, _depthTexture);
 	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, _width, _height, 0, GL_DEPTH_COMPONENT, type, nullptr);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest ? GL_NEAREST : GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest ? GL_NEAREST : GL_LINEAR);
-	
+
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, clamp);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, clamp);
 
@@ -120,7 +120,7 @@ void	FrameBuffer::ensureDepthRbo(GLenum internalFormat)
 {
 	if (_id == 0)
 		throw std::runtime_error("Framebuffer hasn't been created");
-	
+
 	if (_depthTexture != 0)
 	{
 		glDeleteTextures(1, &_depthTexture);
@@ -128,7 +128,7 @@ void	FrameBuffer::ensureDepthRbo(GLenum internalFormat)
 	}
 	if (_depthRbo == 0)
 		glGenRenderbuffers(1, &_depthRbo);
-	
+
 	glBindRenderbuffer(GL_RENDERBUFFER, _depthRbo);
 	glRenderbufferStorage(GL_RENDERBUFFER, internalFormat, _width, _height);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
@@ -147,9 +147,9 @@ bool	FrameBuffer::checkStatus() const
 	if (status != GL_FRAMEBUFFER_COMPLETE)
 	{
 		std::cerr << "Framebuffer not complete: 0x" << std::hex << status << std::endl;
-		return (false); 
+		return (false);
 	}
-	return (true); 
+	return (true);
 }
 
 void	FrameBuffer::setDrawBuffers(const std::vector<GLenum> &drawBuffers)
@@ -168,7 +168,7 @@ void	FrameBuffer::blitDepthFrom(GLuint srcFbo, int srcWidth, int srcHeight)
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _id);
 
 	glBlitFramebuffer(0, 0, srcWidth, srcHeight, 0, 0, _width, _height, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
-	
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
@@ -190,7 +190,6 @@ void	FrameBuffer::clearBufferfv(GLenum buffer, GLint index, const mlm::vec4 clea
 {
 	glClearBufferfv(buffer, index, reinterpret_cast<const GLfloat *>(&(clearColorRGBA.x)));
 }
-
 
 void	FrameBuffer::resize(int newWidth, int newHeight)
 {

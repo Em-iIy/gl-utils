@@ -7,7 +7,6 @@ Created on: 23/12/2024
 
 SSBO::SSBO(void) {}
 
-
 SSBO::SSBO(mlm::vec3 *data, GLsizeiptr data_size, GLenum usage)
 {
 	this->size = data_size;

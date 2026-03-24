@@ -10,7 +10,6 @@ Key::Key(GLFWwindow *in_window, int in_type): window(in_window), type(in_type), 
 
 Key::~Key() {}
 
-
 void	Key::set_window(GLFWwindow *in_window)
 {
 	this->window = in_window;

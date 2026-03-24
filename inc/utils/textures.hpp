@@ -30,7 +30,7 @@ class Tex2d	{
 		void	load(const bmp_t &bmp);
 		void	load(const std::string &img);
 		void	load_render_texture(GLsizei width, GLsizei height, GLenum format, GLenum type);
-		
+
 		const GLuint	&get_id() const;
 
 		void	bind();

@@ -7,7 +7,6 @@ Window::Window() {}
 
 Window::~Window() {}
 
-
 void			Window::resize_callback(GLFWwindow* window, int x, int y)
 {
 	(void)x;
@@ -26,14 +25,13 @@ void				Window::set_update_flags(Flag flag)
 
 void				Window::unset_update_flags(Flag flag)
 {
-	_update_flags &= ~(1 << flag); 
+	_update_flags &= ~(1 << flag);
 }
 
 bool				Window::get_update_flag(Flag flag) const
 {
 	return ((_update_flags >> flag) & 1);
 }
-
 
 GLFWwindow			*Window::create_fullscreen_windowed_window()
 {
@@ -60,7 +58,6 @@ void				Window::update_delta_time()
 	_delta_time = current_frame - _last_frame;
 	_last_frame = current_frame;
 }
-
 
 void				Window::create_window(const std::string &title, const mlm::ivec2 &size, Mode mode)
 {

@@ -5,7 +5,6 @@ Created on: 16/12/2024
 #include "ComputeShader.hpp"
 #include "../gl-utils.hpp"
 
-
 ComputeShader::ComputeShader() {}
 
 ComputeShader::ComputeShader(const char *file_name)
@@ -23,9 +22,8 @@ ComputeShader::ComputeShader(const char *file_name)
 		throw std::exception();
 	}
 	free(compute_source);
-	
-}
 
+}
 
 ComputeShader::~ComputeShader() {}
 

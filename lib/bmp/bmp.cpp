@@ -10,7 +10,6 @@ Created on: 05/09/2024
 #include <stdbool.h>
 #include "bmp/bmp.h"
 
-
 static uint16_t get_2_bytes(uint8_t *buff, size_t offset)
 {
 	return *(uint16_t *)(&buff[offset]);
@@ -170,7 +169,7 @@ static bool	bmp_read_data_32bpp(int fd, bmp_header_t *hdr, bmp_t *bmp)
 			// The current index of the pixel is:
 			// amount of rows * length of row + the pixel in row * 4 bytes
 			uint32_t i = (y * bmp->width + x) * bmp->pixel_size;
-			
+
 			// Here the pixels get converted from BGR to RGB
 			temp = bmp->data[i];
 			bmp->data[i] = bmp->data[i + 2];
@@ -319,7 +318,7 @@ bmp_t load_bmp(const char *file_name)
 			return (bmp);
 		}
 		break;
-	
+
 	default:
 		fprintf(stderr, "bmp error: %d bits per pixel not supported\n", hdr.bits_per_pixel);
 		close(fd);

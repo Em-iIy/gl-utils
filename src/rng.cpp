@@ -16,17 +16,17 @@ namespace rng
 	{
 		return (fgen(f1, f2));
 	}
-	
+
 	float	rand(fgen &gen)
 	{
 		return (gen(mt));
 	}
-	
+
 	igen	generator(const int n1, const int n2)
 	{
 		return (igen(n1, n2));
 	}
-	
+
 	int	rand(igen &gen)
 	{
 		return (gen(mt));

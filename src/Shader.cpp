@@ -36,7 +36,6 @@ Shader::Shader(const char *vertex_file_name, const char *fragment_file_name)
 	}
 	free(vertex_source);
 	free(fragment_source);
-
 }
 
 Shader::~Shader()

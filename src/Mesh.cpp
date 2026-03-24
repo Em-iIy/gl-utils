@@ -22,7 +22,6 @@ void	Mesh::draw(Shader &shader)
 	_vao.unbind();
 }
 
-
 void	Mesh::setup_mesh()
 {
 	_vao.init();

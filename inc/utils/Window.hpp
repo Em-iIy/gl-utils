@@ -4,8 +4,7 @@
 #include "../GLFW/glfw3.h"
 #include "../../gl-utils.hpp"
 
-class Window
-{
+class Window {
 	public:
 		enum	Mode {
 			WINDOWED,
@@ -14,7 +13,7 @@ class Window
 
 		enum	Flag {
 			SIZE,
-			POSITION 
+			POSITION
 		};
 
 	private:
@@ -26,15 +25,13 @@ class Window
 		float		_last_frame = 0.0f;
 		float		_delta_time = 0.0f;
 		uint8_t		_update_flags = 0b00000000;
-		// bool		_vsync = true;
 
 		Mode		_mode = WINDOWED;
 
 		GLFWwindow			*create_fullscreen_windowed_window();
 		GLFWwindow			*create_windowed_window();
-		
-		void				update_delta_time();
 
+		void				update_delta_time();
 
 	public:
 
@@ -50,7 +47,6 @@ class Window
 
 		void				update();
 
-
 		/*    Setters    */
 		void				set_size(const mlm::ivec2 &size);
 		void				set_pos(const mlm::ivec2 &pos);
@@ -64,5 +60,4 @@ class Window
 		float				get_delta_time() const;
 
 		void				print(void) const;
-
 };

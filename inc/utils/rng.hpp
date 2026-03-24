@@ -2,9 +2,7 @@
 
 #include <random>
 
-namespace rng
-{
-
+namespace rng {
 	void	seed();
 
 	typedef std::uniform_real_distribution<float> fgen;

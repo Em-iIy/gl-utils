@@ -14,7 +14,7 @@ class FrameBuffer {
 	public:
 		FrameBuffer();
 		~FrameBuffer();
-	
+
 		void				create(int width, int height);
 		void				destroy();
 

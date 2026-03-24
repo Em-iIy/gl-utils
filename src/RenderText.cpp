@@ -19,7 +19,7 @@ GLuint vbo;
 Font	init_font(const char *font_file)
 {
 	Font characters;
-	
+
 	FT_Library ft;
 	if (FT_Init_FreeType(&ft))
 	{
@@ -108,7 +108,7 @@ void render_text(Font &font, std::string text, float x, float y, float scale, ml
 	glBindVertexArray(vao);
 	scale = scale / 256.0f * 48.0f;
 	std::string::const_iterator c;
-	for (c = text.begin(); c != text.end(); c++) 
+	for (c = text.begin(); c != text.end(); c++)
 	{
 		Character ch = font[*c];
 		if (*c == '\n')
