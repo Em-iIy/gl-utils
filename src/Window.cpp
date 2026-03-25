@@ -94,7 +94,7 @@ void				Window::update()
 	update_delta_time();
 	if (get_update_flag(SIZE))
 	{
-		std::cout << "update size" << std::endl;
+		// std::cout << "update size" << std::endl;
 		glfwGetFramebufferSize(_window, &_size.x, &_size.y);
 		glViewport(0, 0, _size.x, _size.y);
 		unset_update_flags(Window::SIZE);
@@ -109,7 +109,7 @@ void				Window::update()
 /*    Setters    */
 void				Window::set_size(const mlm::ivec2 &size)
 {
-	std::cout << "set size" << std::endl;
+	// std::cout << "set size" << std::endl;
 	_size = size;
 	glfwSetWindowSize(_window, _size.x, _size.y);
 }
